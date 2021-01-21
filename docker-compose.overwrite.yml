@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+
+  proxy:
+    image: mitmproxy/mitmproxy:6.0.2
+    ports:
+      - 0.0.0.0:8080:8080
+
+  web:
+    image: nginx:1.19.6-alpine
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    ports:
+      - 127.0.0.1:5500:80
