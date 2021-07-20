@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil import parser
 import requests
 import icalendar
@@ -19,8 +19,8 @@ for entry in r.json():
     if entry["description"]:
       event["description"] = entry["description"]
     event["dtstamp"] = day.strftime("%Y%m%dT000000Z")
-    event["dtend"] = day.strftime("%Y%m%d")
-    event["dtstart"] = day.strftime("%Y%m%d")
+    event.add("dtstart", day.date(), parameters={"value": "date"})
+    event.add("dtend", day.date() + timedelta(days=1), parameters={"value": "date"})
 
     cal.add_component(event)
 
