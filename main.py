@@ -20,7 +20,7 @@ for entry in r.json():
       event["description"] = entry["description"]
     event["dtstamp"] = day.strftime("%Y%m%dT000000Z")
     event.add("dtstart", day.date(), parameters={"value": "DATE"})
-    event.add("dtend", day.date() + timedelta(days=1), parameters={"value": "date"})
+    event.add("dtend", day.date() + timedelta(days=1), parameters={"value": "DATE"})
 
     cal.add_component(event)
 
